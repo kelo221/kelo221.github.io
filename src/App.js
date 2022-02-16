@@ -1,52 +1,98 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bulma/css/bulma.min.css';
 import './index.css'
+import {Route, Routes, useLocation,useNavigate } from 'react-router-dom'
+import {AnimatePresence} from 'framer-motion'
+
+
 
 import MainContent from "./components/mainContent";
 
 
+
 function App() {
+    const location = useLocation()
+
+    const pages = ['/', 'birds', 'street' ]
+    const [currentPage, setPage] = useState(0)
+    const [clickCheck, setClickCheck] = useState(false)
+
+
+    const navigate = useNavigate()
+
+    // Negative= Up, Positive = Down
+    function windowClicker(delta) {
+
+      if (!clickCheck){
+          setClickCheck(true)
+          if (currentPage === 0){
+              setPage( 1)
+          }else if ( currentPage === 1){
+              setPage( 0)
+          }
+
+          console.log(currentPage)
+          navigate(pages[currentPage])
+      }
+
+        setClickCheck(false)
+    }
+
+  /*  window.addEventListener('click', windowClicker, false);*/
+
+
     return (
-        <React.Fragment>
-
-            <div>
-                <section
-                    className='hero is-fullheight is-family-  secondary'
-                    style={{
-                        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url("./img/sakura.avif")',
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                        height: "100vh",
-                        opacity: "0.5",
-                        objectPosition: "100% 0",
-                    }}>
-                    <div className='hero-body'>
-                        <div className='container'>
-                            <h1 className='title has-text-white is-family-secondary'>
-                                Lorem ipsum
-                            </h1>
-                            <h2 className='subtitle has-text-white is-family-secondary is-italic'>
-                                Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </h2>
-                        </div>
-                    </div>
-                </section>
-
-                <section className='section section--gradient'>
-                    <div className='container'>
-                        <div className='columns'>
 
 
-                        </div>
-                    </div>
-                </section>
-            </div>
+        <AnimatePresence>
 
 
-        </React.Fragment>
+
+            <Routes location={location}   key={location.pathname}>
+                <Route path="/" element={
+                    <MainContent image={"sakura"}
+                                 topic={"Lorem ipsum primus"}
+                                 breadtext={
+                                     "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut\n" +
+                                     "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n" +
+                                     "ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in\n" +
+                                     "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat\n" +
+                                     "cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                 }
+                    />
+
+                }/>
+
+                <Route path="birds" element={
+                    <MainContent image={"birds"}
+                                 topic={"Lorem ipsum secundus"}
+                                 breadtext={
+                                     "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut\n" +
+                                     "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n" +
+                                     "ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in\n" +
+                                     "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat\n" +
+                                     "cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                 }
+                    />
+                }/>
+
+                <Route path="street" element={
+                    <MainContent image={"street"}
+                                 topic={"Lorem ipsum tertius"}
+                                 breadtext={
+                                     "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut\n" +
+                                     "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n" +
+                                     "ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in\n" +
+                                     "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat\n" +
+                                     "cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                 }
+                    />
+                }/>
+
+            </Routes>
+
+        </AnimatePresence>
     );
 }
 
 export default App;
-
