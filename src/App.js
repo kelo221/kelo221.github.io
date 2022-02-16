@@ -13,7 +13,7 @@ function App() {
                 <section
                     className='hero is-fullheight is-family-  secondary'
                     style={{
-                        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url("http://localhost:3000/img/sakura.avif")',
+                        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url("./img/sakura.avif")',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
