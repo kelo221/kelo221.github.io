@@ -1,0 +1,10 @@
+body {
+    background-color: black;
+}
+
+#background {
+    height: 100vh;
+    object-fit: cover;
+    object-position: 100% 0;
+    opacity: 0.5;
+}
