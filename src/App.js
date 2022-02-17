@@ -1,44 +1,56 @@
 import React, {useEffect, useState} from 'react';
 import 'bulma/css/bulma.min.css';
 import './index.css'
-import {Route, Routes, useLocation,useNavigate } from 'react-router-dom'
+import {Route, Routes, useLocation, useNavigate} from 'react-router-dom'
 import {AnimatePresence} from 'framer-motion'
-
 
 
 import MainContent from "./components/mainContent";
 
 
-
 function App() {
     const location = useLocation()
 
-    const pages = ['/', 'birds', 'street' ]
+    const pages = ['/', '/birds', '/street']
     const [currentPage, setPage] = useState(0)
-    const [clickCheck, setClickCheck] = useState(false)
-
 
     const navigate = useNavigate()
 
-    // Negative= Up, Positive = Down
-    function windowClicker(delta) {
 
-      if (!clickCheck){
-          setClickCheck(true)
-          if (currentPage === 0){
-              setPage( 1)
-          }else if ( currentPage === 1){
-              setPage( 0)
-          }
+    useEffect(function subscribeToWheelEvent() {
+        const updateScroll = function (e) {
 
-          console.log(currentPage)
-          navigate(pages[currentPage])
-      }
+            //first get the current loaded page
+            let pageIndex = (pages.indexOf(location.pathname))
 
-        setClickCheck(false)
-    }
+            if (e.deltaY > 0) {
+                // console.log("scroll down move one up in the index")
 
-  /*  window.addEventListener('click', windowClicker, false);*/
+                // if we are on the last page move back to the first page
+                if (pageIndex === pages.length - 1) {
+                    navigate(pages[0])
+                } else {
+                    navigate(pages[pageIndex + 1])
+                }
+
+            } else {
+                // console.log("scroll up move one down in the index")
+
+                // if we are on the first page move back to the last
+                if (pageIndex === 0) {
+                    navigate(pages[pages.length - 1])
+                } else {
+                    navigate(pages[pageIndex - 1])
+                }
+            }
+
+
+        }
+        window.addEventListener('mousewheel', updateScroll);
+        return function () {
+            window.removeEventListener('mousewheel', updateScroll);
+        }
+    }, [currentPage, navigate, pages])
 
 
     return (
@@ -47,8 +59,7 @@ function App() {
         <AnimatePresence>
 
 
-
-            <Routes location={location}   key={location.pathname}>
+            <Routes location={location} key={location.pathname}>
                 <Route path="/" element={
                     <MainContent image={"sakura"}
                                  topic={"Lorem ipsum primus"}

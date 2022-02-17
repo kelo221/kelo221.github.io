@@ -3,11 +3,13 @@ import 'bulma/css/bulma.min.css';
 import {motion} from 'framer-motion'
 
 
-import {Link, Navigate} from 'react-router-dom';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faAnglesUp} from '@fortawesome/free-solid-svg-icons'
+import {faAnglesDown} from '@fortawesome/free-solid-svg-icons'
+
 
 const mainContent = ({image, topic, breadtext}) => {
-
-
 
 
     return (
@@ -15,7 +17,6 @@ const mainContent = ({image, topic, breadtext}) => {
 
 
             <section
-
 
 
                 className='hero is-fullheight is-family-  secondary'
@@ -30,21 +31,40 @@ const mainContent = ({image, topic, breadtext}) => {
                 }}>
                 <div className='hero-body'>
                     <div className='container'>
+
+
+
+
+                        <div className="columns is-mobile is-centered">
+                            <FontAwesomeIcon icon={faAnglesUp} size="3x" inverse style={{opacity: 0.3, filter:"drop-shadow(1px 1px 2px black)"}}/>
+                        </div>
+
+
+
                         <h1 className='title has-text-white is-family-secondary'
                             style={{textShadow: "1px 1px 2px black",}}>
                             {topic}
                         </h1>
+
                         <h2 className='subtitle has-text-white is-family-secondary is-italic'
                             style={{textShadow: "1px 1px 2px black",}}
                         >
                             {breadtext}
                         </h2>
+
+                        <div className="columns is-mobile is-centered mt-3">
+                            <FontAwesomeIcon icon={faAnglesDown} size="3x" inverse style={{opacity: 0.3, filter:"drop-shadow(1px 1px 2px black)"}}/>
+                        </div>
+
+
                     </div>
 
+
                 </div>
-                <Link to="/birds" className="btn btn-primary has-text-white is-family-secondary is-italic">Go to birds</Link>
+
+                {/* <Link to="/birds" className="btn btn-primary has-text-white is-family-secondary is-italic">Go to birds</Link>
                 <Link to="/" className="btn btn-primary has-text-white is-family-secondary is-italic">Go to sakura</Link>
-                <Link to="/street" className="btn btn-primary has-text-white is-family-secondary is-italic">Go to street</Link>
+                <Link to="/street" className="btn btn-primary has-text-white is-family-secondary is-italic">Go to street</Link>*/}
 
             </section>
         </motion.div>
