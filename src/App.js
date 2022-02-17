@@ -9,19 +9,16 @@ import MainContent from "./components/mainContent";
 
 
 function App() {
+
     const location = useLocation()
-
-    const pages = ['/', '/birds', '/street']
-    const [currentPage, setPage] = useState(0)
-
+    const [pages] = useState(['/', '/birds', '/street'])
     const navigate = useNavigate()
-
 
     useEffect(function subscribeToWheelEvent() {
         const updateScroll = function (e) {
 
             //first get the current loaded page
-            let pageIndex = (pages.indexOf(location.pathname))
+            const pageIndex = (pages.indexOf(location.pathname))
 
             if (e.deltaY > 0) {
                 // console.log("scroll down move one up in the index")
@@ -50,8 +47,24 @@ function App() {
         return function () {
             window.removeEventListener('mousewheel', updateScroll);
         }
-    }, [currentPage, navigate, pages])
+    }, [location.pathname, navigate, pages])
 
+
+    const pageIndex = (pages.indexOf(location.pathname))
+    let downButtonPage
+    let upButtonPage
+
+    if (pageIndex === 0) {
+        upButtonPage = (pages[pages.length - 1])
+    } else {
+        upButtonPage = (pages[pageIndex - 1])
+    }
+
+    if (pageIndex === pages.length - 1) {
+        downButtonPage = (pages[0])
+    } else {
+        downButtonPage = (pages[pageIndex + 1])
+    }
 
     return (
 
@@ -70,6 +83,8 @@ function App() {
                                      "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat\n" +
                                      "cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                                  }
+                                 upButtonLink={upButtonPage}
+                                 downButtonLink={downButtonPage}
                     />
 
                 }/>
@@ -84,6 +99,8 @@ function App() {
                                      "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat\n" +
                                      "cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                                  }
+                                 upButtonLink={upButtonPage}
+                                 downButtonLink={downButtonPage}
                     />
                 }/>
 
@@ -97,6 +114,8 @@ function App() {
                                      "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat\n" +
                                      "cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                                  }
+                                 upButtonLink={upButtonPage}
+                                 downButtonLink={downButtonPage}
                     />
                 }/>
 

@@ -3,13 +3,13 @@ import 'bulma/css/bulma.min.css';
 import {motion} from 'framer-motion'
 
 
-
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faAnglesUp} from '@fortawesome/free-solid-svg-icons'
 import {faAnglesDown} from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom'
 
 
-const mainContent = ({image, topic, breadtext}) => {
+const mainContent = ({image, topic, breadtext, downButtonLink, upButtonLink}) => {
 
 
     return (
@@ -28,17 +28,18 @@ const mainContent = ({image, topic, breadtext}) => {
                     height: "100vh",
                     opacity: "0.5",
                     objectPosition: "100% 0",
+                    visibility: "visible",
                 }}>
                 <div className='hero-body'>
                     <div className='container'>
 
 
-
-
                         <div className="columns is-mobile is-centered">
-                            <FontAwesomeIcon icon={faAnglesUp} size="3x" inverse style={{opacity: 0.3, filter:"drop-shadow(1px 1px 2px black)"}}/>
+                            <Link to={{pathname: upButtonLink}}>
+                                <FontAwesomeIcon icon={faAnglesUp} size="3x" inverse
+                                                 style={{opacity: 0.3, filter: "drop-shadow(1px 1px 2px black)"}}/>
+                            </Link>
                         </div>
-
 
 
                         <h1 className='title has-text-white is-family-secondary'
@@ -53,7 +54,13 @@ const mainContent = ({image, topic, breadtext}) => {
                         </h2>
 
                         <div className="columns is-mobile is-centered mt-3">
-                            <FontAwesomeIcon icon={faAnglesDown} size="3x" inverse style={{opacity: 0.3, filter:"drop-shadow(1px 1px 2px black)"}}/>
+
+                            <Link to={{pathname: downButtonLink}}>
+                                <FontAwesomeIcon icon={faAnglesDown} size="3x" inverse
+                                                 style={{opacity: 0.3, filter: "drop-shadow(1px 1px 2px black)"}}/>
+                            </Link>
+
+
                         </div>
 
 
