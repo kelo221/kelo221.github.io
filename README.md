@@ -1,3 +1,3 @@
-Homepage / Resume thingy (WIP)
+Homepage
 
 https://kelo221.github.io/
