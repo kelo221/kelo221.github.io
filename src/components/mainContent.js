@@ -34,30 +34,30 @@ const mainContent = ({image, topic, breadtext, downButtonLink, upButtonLink}) =>
                     <div className='container'>
 
 
-                        <div className="columns is-mobile is-centered">
+                        <div className="columns is-centered mb-2">
                             <Link to={{pathname: upButtonLink}}>
                                 <FontAwesomeIcon icon={faAnglesUp} size="3x" inverse
-                                                 style={{opacity: 0.3, filter: "drop-shadow(1px 1px 2px black)"}}/>
+                                                 style={{opacity: 0.5, filter: "drop-shadow(1px 1px 2px black)"}}/>
                             </Link>
                         </div>
 
 
-                        <h1 className='title has-text-white is-family-secondary'
+                        <h1 className='title has-text-white is-family-secondary is-size-1'
                             style={{textShadow: "1px 1px 2px black",}}>
                             {topic}
                         </h1>
 
-                        <h2 className='subtitle has-text-white is-family-secondary is-italic'
+                        <h2 className='subtitle has-text-white is-family-secondary is-italic is-size-3'
                             style={{textShadow: "1px 1px 2px black",}}
                         >
                             {breadtext}
                         </h2>
 
-                        <div className="columns is-mobile is-centered mt-3">
+                        <div className="columns is-centered mt-6 ">
 
                             <Link to={{pathname: downButtonLink}}>
                                 <FontAwesomeIcon icon={faAnglesDown} size="3x" inverse
-                                                 style={{opacity: 0.3, filter: "drop-shadow(1px 1px 2px black)"}}/>
+                                                 style={{opacity: 0.5, filter: "drop-shadow(1px 1px 2px black)"}}/>
                             </Link>
 
 

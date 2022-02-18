@@ -20,7 +20,22 @@ function App() {
             //first get the current loaded page
             const pageIndex = (pages.indexOf(location.pathname))
 
-            if (e.deltaY > 0) {
+            let touchValue = 0
+            let scrollValue = 0
+
+            //TODO (maybe...) choose direction by touch
+
+            /*if (window.TouchEvent) {
+                        touchValue = e.changedTouches[0].pageY
+                        console.log("touch event")
+                    }*/
+
+            console.log("scroll event")
+            scrollValue = e.deltaY
+
+            console.log(scrollValue)
+
+            if ((scrollValue > 0) || (!touchValue)) {
                 // console.log("scroll down move one up in the index")
 
                 // if we are on the last page move back to the first page
@@ -43,9 +58,11 @@ function App() {
 
 
         }
+        window.addEventListener("touchend", updateScroll, false);
         window.addEventListener('wheel', updateScroll);
         return function () {
             window.removeEventListener('wheel', updateScroll);
+            window.removeEventListener('touchend', updateScroll);
         }
     }, [location.pathname, navigate, pages])
 
@@ -75,13 +92,10 @@ function App() {
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={
                     <MainContent image={"sakura"}
-                                 topic={"Lorem ipsum primus"}
+                                 topic={"Hello"}
                                  breadtext={
-                                     "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut\n" +
-                                     "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n" +
-                                     "ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in\n" +
-                                     "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat\n" +
-                                     "cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                     "Navigate using one of the following: touchscreen, scroll-wheel, or arrow buttons. \n" +
+                                     "Very inclusive."
                                  }
                                  upButtonLink={upButtonPage}
                                  downButtonLink={downButtonPage}
@@ -91,13 +105,11 @@ function App() {
 
                 <Route path="birds" element={
                     <MainContent image={"birds"}
-                                 topic={"Lorem ipsum secundus"}
+                                 topic={"Technologies!"}
                                  breadtext={
-                                     "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut\n" +
-                                     "labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation\n" +
-                                     "ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in\n" +
-                                     "voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat\n" +
-                                     "cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                     "This website is powered by React and Bulma, and Fontawesome icons that are integrated into Bulma.\n" +
+                                     "Bulma automatically makes websites optimized for any kind of device: desktop pcs, mobile phones and tables, "+
+                                     "might even look fancy on your IoT fridge!"
                                  }
                                  upButtonLink={upButtonPage}
                                  downButtonLink={downButtonPage}
