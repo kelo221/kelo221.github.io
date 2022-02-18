@@ -43,9 +43,9 @@ function App() {
 
 
         }
-        window.addEventListener('mousewheel', updateScroll);
+        window.addEventListener('wheel', updateScroll);
         return function () {
-            window.removeEventListener('mousewheel', updateScroll);
+            window.removeEventListener('wheel', updateScroll);
         }
     }, [location.pathname, navigate, pages])
 
