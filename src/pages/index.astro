@@ -1,0 +1,37 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { ViewTransitions } from 'astro:transitions';
+import Hand from "../components/Hand.astro";
+import HeaderLink from "../components/HeaderLink.astro";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<ViewTransitions />
+	</head>
+	<body>
+		<Header title={SITE_TITLE} />
+		<main>
+			<Hand/>
+			<p>
+				Welcome to my GitHub Page!
+			</p>
+			<p>
+				Explore my collection of projects, where I bring ideas to life through code.
+				From innovative solutions to creative experiments, each repository reflects my passion for technology and my commitment to continuous learning.
+			</p>
+
+			<p>
+				Feel free to dive in and discover few of the projects I have worked on by clicking on the <HeaderLink href="/projects">projects</HeaderLink> tab.
+			</p>
+
+		</main>
+		<Footer />
+	</body>
+</html>
