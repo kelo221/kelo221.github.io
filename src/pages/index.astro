@@ -48,6 +48,8 @@ import HeaderLink from "../components/HeaderLink.astro";
 		import { startRender } from "../renderModel";
 		import { vs, fs } from "../suzanne";
 
-		startRender("render", { vs, fs });
+		document.addEventListener("astro:page-load", () => {
+			startRender("render", { vs, fs });
+		});
 	</script>
 </html>
