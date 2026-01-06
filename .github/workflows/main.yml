@@ -13,21 +13,19 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: oven/bun:alpine
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: bun install
+      - name: Build site
+        run: bun run build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          node-version: '20'
-      - name: Install pnpm
-        run: npm install -g pnpm
-      - name: Update pnpm lockfile
-        run: pnpm install --no-frozen-lockfile
-      - name: Install, build, and upload your site
-        uses: withastro/action@v1
-        with:
-          package-manager: pnpm@latest
+          path: "./dist"
 
   deploy:
     needs: build
@@ -38,4 +36,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
